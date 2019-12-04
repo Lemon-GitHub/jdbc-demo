@@ -54,7 +54,7 @@ public class DBUtil {
     }
 
 
-    // DataSource方式获取数据库连接
+    // DataSource方式获取数据库连接 静态代码块
     public static Connection getConnection2() {
         try {
             return DATASOURCE.getConnection();
@@ -65,7 +65,7 @@ public class DBUtil {
     }
 
 
-    // 单例
+    // 单例 推荐使用
     public static DataSource getDataSource() {
         if (DATASOURCE2 == null) {
             DATASOURCE2 = new MysqlDataSource();
