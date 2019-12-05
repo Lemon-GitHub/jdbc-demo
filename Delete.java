@@ -1,18 +1,17 @@
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class Update{
+public class Delete {
 
     public static void main(String[] args) {
         // 防止sql注入，所以查询不到数据
         // queryById("唐三藏' or '1'='1");
-        updateByName("唐三藏", 99);
+        DeleteByID(8);
     }
 
-    public static void updateByName(String stuName, int updateMath) {
+    public static void DeleteByID(int stuID) {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
@@ -20,11 +19,11 @@ public class Update{
                 // 创建数据库连接Connection
                 connection = DBUtil.getConnection2();
                 // 根据数据库连接创建操作命令对象Statement
-                String sql = "update exam_result set math=?" +
-                        " where name=?";
+                String sql = "delete from exam_result where id=?";
+
                 statement = connection.prepareStatement(sql);
-                statement.setInt(1, updateMath);
-                statement.setString(2, stuName);
+                statement.setInt(1, stuID);
+
                 // SQL新增、修改、删除操作，都使用executeUpdate()方法
                 int num = statement.executeUpdate();
                 if(num>0)
